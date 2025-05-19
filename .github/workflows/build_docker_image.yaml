@@ -9,13 +9,13 @@ jobs:
       run:
         working-directory: .
     steps:
-      - name: Create credential file
-        run: |
-          echo "${{ secrets.GDRIVE_CREDENTIALS_JSON }}" > creds.json
       - name: Checkout
         uses: actions/checkout@v2
         with:
           ref: ${{ github.ref }}
+      - name: Create credential file
+        run: |
+          echo "${{ secrets.GDRIVE_CREDENTIALS_JSON }}" > creds.json
       - name: Build container
         run: |
           docker network create data
