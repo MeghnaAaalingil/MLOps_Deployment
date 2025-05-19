@@ -5,6 +5,8 @@ WORKDIR /app
 RUN pip install "dvc[gdrive]"
 RUN pip install -r requirements_prod.txt
 
+# initialise dvc
+RUN dvc init --no-scm
 # configuring remote server in dvc
 RUN dvc remote add -d storage gdrive://1drs_lQqAQjMeh54QyhMH6cWKb0gNYcmW
 RUN dvc remote modify storage gdrive_use_service_account true
