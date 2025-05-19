@@ -1,6 +1,7 @@
 import torch
 import datasets
 import pytorch_lightning as pl
+import hydra 
 
 from datasets import load_dataset
 from transformers import AutoTokenizer
@@ -10,7 +11,7 @@ class DataModule(pl.LightningDataModule):
     def __init__(
         self,
         #/app/
-        model_name="model_files/tokenizer",#google/bert_uncased_L-2_H-128_A-2",
+        model_name="google/bert_uncased_L-2_H-128_A-2",#google/bert_uncased_L-2_H-128_A-2",
         batch_size=64,
         max_length=128,
     ):        
@@ -63,9 +64,17 @@ class DataModule(pl.LightningDataModule):
             self.val_data, batch_size=self.batch_size, shuffle=False
         )
 
-
-if __name__ == "__main__":
-    data_model = DataModule()
+@hydra.main(config_path="./configs", config_name="config")
+def main(cfg):
+    print("Using config:", cfg)
+    data_model = DataModule(
+        model_name=cfg.model.name,
+        batch_size=cfg.processing.batch_size,
+        max_length=cfg.processing.max_length,
+    )
     data_model.prepare_data()
     data_model.setup()
     print(next(iter(data_model.train_dataloader()))["input_ids"].shape)
+
+if __name__ == "__main__":
+    main()
