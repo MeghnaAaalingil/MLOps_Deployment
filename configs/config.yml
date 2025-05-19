@@ -1,4 +1,0 @@
-defaults:
-  model: model
-  processing: processing
-  training: training
