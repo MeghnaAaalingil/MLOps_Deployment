@@ -2,6 +2,8 @@ FROM huggingface/transformers-pytorch-cpu:latest
 COPY ./ /app
 WORKDIR /app
 
+RUN pip install "dvc[gdrive]"
+
 RUN pip install -r requirements_prod.txt
 
 # initialise dvc
@@ -11,7 +13,7 @@ RUN dvc remote add -d storage gdrive://1drs_lQqAQjMeh54QyhMH6cWKb0gNYcmW
 RUN dvc remote modify storage gdrive_use_service_account true
 RUN dvc remote modify storage gdrive_service_account_json_file_path /app/secret.json
 
-RUN dvc pull dvcfiles/trained_model.dvc
+RUN dvc pull dvcfiles/model.onnx.dvc
 
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
