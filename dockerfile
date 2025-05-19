@@ -3,7 +3,7 @@ COPY ./ /app
 WORKDIR /app
 
 RUN pip install "dvc[gdrive]"
-RUN dvc --version
+
 RUN pip install -r requirements_prod.txt
 
 # initialise dvc
