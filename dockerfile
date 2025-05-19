@@ -2,8 +2,6 @@ FROM huggingface/transformers-pytorch-cpu:latest
 COPY ./ /app
 WORKDIR /app
 
-RUN pip install "dvc[gdrive]==3.59.2"
-
 RUN pip install -r requirements_prod.txt
 
 # initialise dvc
