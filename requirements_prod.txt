@@ -9,4 +9,4 @@ onnxruntime
 fastapi
 uvicorn
 boto3
-dvc==3.59.2
+dvc
