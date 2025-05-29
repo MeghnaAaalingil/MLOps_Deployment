@@ -9,10 +9,13 @@ RUN pip install -r requirements_prod.txt
 
 # initialise dvc
 RUN dvc init --no-scm
+
+RUN echo "DVC Version Info:" && dvc version
+
 # configuring remote server in dvc
 RUN dvc remote add -d storage gdrive://1drs_lQqAQjMeh54QyhMH6cWKb0gNYcmW
 RUN dvc remote modify storage gdrive_use_service_account true
-RUN dvc remote modify storage gdrive_service_account_json_file_path creds.json
+RUN dvc remote modify storage gdrive_service_account_json_file_path /app/creds.json
 
 # pulling the trained model
 RUN dvc pull dvcfiles/model.onnx.dvc

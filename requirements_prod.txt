@@ -1,12 +1,12 @@
-pytorch-lightning
-datasets
-transformers
-scikit-learn
-hydra-core
-omegaconf
-hydra_colorlog
-onnxruntime
-fastapi
-uvicorn
-boto3
+# pytorch-lightning
+# datasets
+# transformers
+# scikit-learn
+# hydra-core
+# omegaconf
+# hydra_colorlog
+# onnxruntime
+# fastapi
+# uvicorn
+# boto3
 dvc
