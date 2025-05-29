@@ -13,7 +13,7 @@ RUN dvc init --no-scm
 # configuring remote server in dvc
 RUN dvc remote add -d storage gdrive://1drs_lQqAQjMeh54QyhMH6cWKb0gNYcmW
 RUN dvc remote modify storage gdrive_use_service_account true
-RUN dvc remote modify storage gdrive_service_account_json_file_path /app/creds.json
+RUN dvc remote modify storage gdrive_service_account_json_file_path creds.json
 
 RUN cat .dvc/config
 # pulling the trained model
