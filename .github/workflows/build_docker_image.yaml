@@ -13,11 +13,13 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ github.ref }}
+      - name: Create creds.json from GitHub secret
+        run: echo '${{ secrets.GDRIVE_CREDENTIALS_JSON }}' > creds.json
       - name: Build container
         env:
-          GDRIVE_SERVICE_ACCOUNT: ${{ secrets.GDRIVE_SERVICE_ACCOUNT }}
+          GDRIVE_SERVICE_ACCOUNT: ${{ secrets.GDRIVE_CREDENTIALS_JSON }}
         run: |
-          docker build --build-arg GDRIVE_SERVICE_ACCOUNT="$GDRIVE_SERVICE_ACCOUNT" \
+          docker build --build-arg GDRIVE_CREDENTIALS_JSON="$GDRIVE_CREDENTIALS_JSON" \
                       --tag inference:latest .
           docker run -p 8000:8000 --name inference_container inference:latest
       # - name: Run Docker container with credentials
