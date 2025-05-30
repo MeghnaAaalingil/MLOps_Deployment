@@ -64,17 +64,8 @@ class DataModule(pl.LightningDataModule):
             self.val_data, batch_size=self.batch_size, shuffle=False
         )
 
-@hydra.main(config_path="./configs", config_name="config")
-def main(cfg):
-    print("Using config:", cfg)
-    data_model = DataModule(
-        model_name=cfg.model.name,
-        batch_size=cfg.processing.batch_size,
-        max_length=cfg.processing.max_length,
-    )
+if __name__ == "__main__":
+    data_model = DataModule()
     data_model.prepare_data()
     data_model.setup()
     print(next(iter(data_model.train_dataloader()))["input_ids"].shape)
-
-if __name__ == "__main__":
-    main()
