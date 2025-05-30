@@ -9,4 +9,4 @@
 # fastapi
 # uvicorn
 # boto3
-dvc
+dvc==3.59.2
