@@ -1,4 +1,12 @@
-FROM huggingface/transformers-pytorch-cpu:latest
+# FROM huggingface/transformers-pytorch-cpu:latest
+FROM python:3.10-slim
+
+# Install build dependencies and system tools
+RUN apt-get update && apt-get install -y git curl gcc libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Upgrade pip and setuptools
+RUN pip install --upgrade pip setuptools
 
 COPY ./ /app
 WORKDIR /app
