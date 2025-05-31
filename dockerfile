@@ -10,6 +10,7 @@ RUN pip install --upgrade pip setuptools
 
 COPY ./ /app
 WORKDIR /app
+COPY models/model.onnx.dvc /app/models/
 
 # install requirements
 RUN pip install "dvc[gdrive]"
